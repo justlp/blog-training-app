@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  ul.mt-3
+    each user in users
+      li
+        a(href='/users/' + user.id)=user.name

@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container
+          a.navbar-brand(href='/') Main
+          .navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.active
+                a.nav-link(href='/articles') Articles
+              li.nav-item
+                a.nav-link(href='/users') Users
+            a.btn.btn-outline-info.mr-sm-2(href='/login') Login
+            a.btn.btn-outline-light(href='/signin') Sign In
+    .container
+      block content

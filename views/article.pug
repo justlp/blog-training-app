@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  a.badge.badge-info.mt-3.mb-4(href='/users/' + article.userId) Author
+  h1=article.title
+  p=article.body

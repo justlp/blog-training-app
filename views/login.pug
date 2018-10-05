@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Login
+
+  form(method='POST' action='/login')
+    .input-group.mb-3
+      .input-group-prepend
+        .input-group-text $
+      input.form-control(type='text', placeholder='Username', name='username')
+
+    .input-group.mb-3
+      .input-group-prepend
+        .input-group-text *
+      input.form-control(type='password', placeholder='Password', name='password')
+
+    button.btn.btn-dark Login

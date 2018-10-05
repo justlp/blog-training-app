@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .row.mt-3
+    each article in articles
+      .col-3.mb-5
+        .card.h-100
+          .card-body
+            h5.card-title=article.title
+            p.card-text=article.body
+            a.btn.btn-primary(href='/articles/' + article.id) More..
+
+
