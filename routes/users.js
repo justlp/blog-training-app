@@ -1,11 +1,19 @@
 const fs = require('fs')
 const express = require('express')
+const passport = require('passport')
+
 const utils = require('../shared/utils')
 
 const router = express.Router()
 
+
 /* Get users listing. */
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+  res.redirect('/login')
+},(req, res) => {
   const usersFile = './mock/db/users.json'
 
   fs.readFile(usersFile, 'utf-8', (err, data) => {

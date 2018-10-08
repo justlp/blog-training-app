@@ -3,10 +3,15 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+const session = require('express-session')
+
+const auth = require('./auth/index')
 
 const indexRouter = require('./routes/index')
 const loginRouter = require('./routes/login')
-const signinRouter = require('./routes/signin')
+const registerRouter = require('./routes/register')
 const usersRouter = require('./routes/users')
 const articlesRouter = require('./routes/articles')
 
@@ -16,6 +21,12 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+auth()
+
+app.use(session({secret: 'keyboard cat'}))
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
-app.use('/signin', signinRouter);
+app.use('/register', registerRouter);
 app.use('/users', usersRouter);
 app.use('/articles', articlesRouter);
 
